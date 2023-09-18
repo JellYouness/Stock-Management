@@ -4,7 +4,7 @@
     class DAO{
 
         function getPDO(){
-            return new PDO("mysql:host=localhost;dbname=tp5;","root","");
+            return new PDO("mysql:host=sql11.freemysqlhosting.net;dbname=sql11646364;","sql11646364","padBMkgryA");
         }
 
         function authentification($login, $password){

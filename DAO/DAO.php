@@ -2,10 +2,10 @@
 // require("../Metier/client.php");
 
 class DAO{
-        public static $host = "localhost";
-        public static $db = "test";
-        public static $user = "root";
-        public static $pwd = "";
+        public static $host = "sql11.freemysqlhosting.net";
+        public static $db = "sql11646364";
+        public static $user = "sql11646364";
+        public static $pwd = "padBMkgryA";
 
         function getPDO(){
             return new PDO("mysql:host=".self::$host.";dbname=".self::$db.";","".self::$user."","".self::$pwd."");

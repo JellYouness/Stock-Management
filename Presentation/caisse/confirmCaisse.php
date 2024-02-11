@@ -3,7 +3,7 @@ require("../../Metier/commande.php");
 require("../../Metier/ligneCmd.php");
   session_start();
   if(!isset($_SESSION['login'])){
-    header("Location: http://localhost/Mini/");
+    header("Location: http://localhost/Stock-Management/");
   }
 
   // var_dump($_POST);
@@ -24,5 +24,5 @@ require("../../Metier/ligneCmd.php");
   
 
   // header("Location: http://localhost/Mini/Presentation/Commande/pdf.php?ref=$idcmd");
-  header("Location: http://localhost/Mini/Presentation/Caisse/caisse.php?ref=$idcmd");
+  header("Location: /Stock-Management/Presentation/Caisse/caisse.php?ref=$idcmd");
 ?>

@@ -1,5 +1,5 @@
 <?php
-include_once "C:\wamp\www\Mini\DAO\DAO.php";
+require_once "../DAO/DAO.php";
 
 
 class Produit{
@@ -18,7 +18,7 @@ class Produit{
     function __construct($r,$l,$p,$q,$a,$i,$c,$d){
         $this->reference = $r;
         $this->libelle = $l;
-        $this->prix = $p;
+        $this->prixUni = $p;
         $this->quantite = $q;
         $this->prixAchat = $a;
         $this->image = $i;
@@ -32,7 +32,7 @@ class Produit{
         switch($c){
             case "r" : return $this->reference;
             case "l" : return $this->libelle;
-            case "p" : return $this->prix;
+            case "p" : return $this->prixUni;
             case "q" : return $this->quantite;
             case "a" : return $this->prixAchat;
             case "i" : return $this->image;

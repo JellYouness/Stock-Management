@@ -2,7 +2,7 @@
   session_start();
   include_once('../../Metier/client.php');
   if(!isset($_SESSION['login'])){
-    header("Location: http://localhost/Mini/");
+    header("Location: /Stock-Management/");
   }
   if(isset($_POST)){
     

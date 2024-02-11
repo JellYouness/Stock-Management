@@ -3,7 +3,7 @@ require("../../Metier/approvisionnement.php");
 require("../../Metier/ligneAppro.php");
   session_start();
   if(!isset($_SESSION['login'])){
-    header("Location: http://localhost/Mini/");
+    header("Location: /Stock-Management/");
   }
 
   // var_dump($_POST);
@@ -24,5 +24,5 @@ require("../../Metier/ligneAppro.php");
   
 
   // header("Location: http://localhost/Mini/Presentation/Commande/pdf.php?ref=$idcmd");
-  header("Location: http://localhost/Mini/Presentation/Approvisionnement/caisse.php?ref=$idapp");
+  header("Location: /Stock-Management/Presentation/Approvisionnement/caisse.php?ref=$idapp");
 ?>

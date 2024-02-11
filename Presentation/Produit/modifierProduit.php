@@ -1,16 +1,16 @@
 <?php 
   session_start();
   if(!isset($_SESSION['login'])){
-    header("Location: http://localhost/Mini/");
+    header("Location: /Stock-Management/");
   }
   if(isset($_POST)){
     include_once('../../Metier/produit.php');
     if(extract($_POST)){
       $dao = new DAO();
-    $c = new Produit($reference,$libelle,$prix,$quantite,$achat,$newName,$cat);
+    $c = new Produit($reference,$libelle,$prix,$quantite,$achat,$image,$cat,$desc);
     $c->update($c);
     $succes=true;
     }
   }
-  header("Location: http://localhost/Mini/Presentation/Produit/afficherProduits.php");
+  header("Location: /Stock-Management/Presentation/Produit/afficherProduits.php");
 ?>

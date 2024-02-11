@@ -244,6 +244,7 @@ CREATE TABLE `produit` (
   `quantiteStock` int(11) NOT NULL,
   `prixAchat` float NOT NULL,
   `image` varchar(45) DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
   `idCategorie` varchar(45) NOT NULL,
   PRIMARY KEY (`reference`),
   KEY `fk5_idx` (`idCategorie`),

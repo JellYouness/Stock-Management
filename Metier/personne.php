@@ -1,5 +1,5 @@
 <?php 
-include_once "C:\wamp\www\Mini\DAO\DAO.php";
+require_once "../DAO/DAO.php";
 
 
 class Personne{

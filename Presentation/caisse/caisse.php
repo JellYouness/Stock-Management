@@ -2,7 +2,7 @@
 // require("../../Metier/commande.php");
   session_start();
   if(!isset($_SESSION['login'])){
-    header("Location: http://localhost/Mini/");
+    header("Location: /Stock-Management/");
   }
 ?>
 
@@ -315,7 +315,7 @@
         $('#myModal').modal('show');
     });
     function print2(ref){
-            var mywindow = window.open(`http://localhost/Mini/Presentation/Commande/pdf.php?ref=${ref}`, 'PRINT', 'height=400,width=600');
+            var mywindow = window.open(`/Stock-Management/Presentation/Commande/pdf.php?ref=${ref}`, 'PRINT', 'height=400,width=600');
             mywindow.focus(); 
             mywindow.print();
             mywindow.addEventListener('afterprint', (event) => {

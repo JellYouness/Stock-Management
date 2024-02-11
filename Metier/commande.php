@@ -24,7 +24,8 @@ class Commande extends ApproCom{
     }
 
     public static function delete($id){
-        return $this->dao->deleteCommande($id);
+        $dao = new DAO();
+        return $dao->deleteCommande($id);
     }
 
 }

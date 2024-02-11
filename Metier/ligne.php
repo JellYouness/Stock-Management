@@ -1,5 +1,5 @@
 <?php
-include_once "../../DAO/DAO.php";
+require_once "../DAO/DAO.php";
 
 
 class Ligne{

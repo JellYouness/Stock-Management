@@ -8,7 +8,7 @@ require_once("../../Metier/ligneCmd.php");
 require_once("../../Metier/approvisionnement.php");
   session_start();
   if(!isset($_SESSION['login'])){
-    header("Location: http://localhost/Mini/");
+    header("Location: /Stock-Management/");
   }
 ?>
 
@@ -102,7 +102,7 @@ require_once("../../Metier/approvisionnement.php");
                     <li class="sidebar-title">Menu</li>
 
                     <li class="sidebar-item  ">
-                        <a href="http://localhost/Mini/Presentation/dashboard.php" class='sidebar-link'>
+                        <a href="/Stock-Management/Presentation/dashboard.php" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Dashboard</span>
                         </a>
@@ -115,10 +115,10 @@ require_once("../../Metier/approvisionnement.php");
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Client/ajouterClient.php">Ajout</a>
+                                <a href="/Stock-Management/Presentation/Client/ajouterClient.php">Ajout</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Client/afficherClients.php">Liste</a>
+                                <a href="/Stock-Management/Presentation/Client/afficherClients.php">Liste</a>
                             </li>
                         </ul>
                     </li>
@@ -130,11 +130,11 @@ require_once("../../Metier/approvisionnement.php");
                         <ul class="submenu ">
                             <li class="submenu-item ">
                                 <a
-                                    href="http://localhost/Mini/Presentation/Fournisseur/ajouterFournisseur.php">Ajout</a>
+                                    href="/Stock-Management/Presentation/Fournisseur/ajouterFournisseur.php">Ajout</a>
                             </li>
                             <li class="submenu-item ">
                                 <a
-                                    href="http://localhost/Mini/Presentation/Fournisseur/afficherFournisseurs.php">Liste</a>
+                                    href="/Stock-Management/Presentation/Fournisseur/afficherFournisseurs.php">Liste</a>
                             </li>
                         </ul>
                     </li>
@@ -145,10 +145,10 @@ require_once("../../Metier/approvisionnement.php");
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Produit/ajouterProduit.php">Ajout</a>
+                                <a href="/Stock-Management/Presentation/Produit/ajouterProduit.php">Ajout</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Produit/afficherProduits.php">Liste</a>
+                                <a href="/Stock-Management/Presentation/Produit/afficherProduits.php">Liste</a>
                             </li>
                         </ul>
                     </li>
@@ -159,10 +159,10 @@ require_once("../../Metier/approvisionnement.php");
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Categorie/ajouterCategorie.php">Ajout</a>
+                                <a href="/Stock-Management/Presentation/Categorie/ajouterCategorie.php">Ajout</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Categorie/afficherCategories.php">Liste</a>
+                                <a href="/Stock-Management/Presentation/Categorie/afficherCategories.php">Liste</a>
                             </li>
                         </ul>
                     </li>
@@ -173,10 +173,10 @@ require_once("../../Metier/approvisionnement.php");
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Caisse/caisse.php">Ajout</a>
+                                <a href="/Stock-Management/Presentation/Caisse/caisse.php">Ajout</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Commande/afficherCommandes.php">Liste</a>
+                                <a href="/Stock-Management/Presentation/Commande/afficherCommandes.php">Liste</a>
                             </li>
                         </ul>
                     </li>
@@ -187,10 +187,10 @@ require_once("../../Metier/approvisionnement.php");
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Approvisionnement/caisse.php">Ajout</a>
+                                <a href="/Stock-Management/Presentation/Approvisionnement/caisse.php">Ajout</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Approvisionnement/afficherApprovisionnements.php">Liste</a>
+                                <a href="/Stock-Management/Presentation/Approvisionnement/afficherApprovisionnements.php">Liste</a>
                             </li>
                         </ul>
                     </li>

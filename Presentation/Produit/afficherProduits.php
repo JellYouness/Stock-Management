@@ -118,6 +118,12 @@
                                                                         <div class=" form-body">
                                                                             <div class="row">
                                                                                 <div class="col-12">
+                                                                                    <input type="hidden"
+                                                                                            name="image"
+                                                                                            value=<?=$t->get("i") ?>>
+                                                                                    <input type="hidden"
+                                                                                            name="desc"
+                                                                                            value=<?=$t->get("d") ?>>
                                                                                     <div class="form-group">
                                                                                         <label
                                                                                             for="first-name-vertical">Reference</label>

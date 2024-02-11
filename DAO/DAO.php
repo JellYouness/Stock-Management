@@ -1,10 +1,14 @@
 <?php
 // require("../Metier/client.php");
 
-    class DAO{
+class DAO{
+        public static $host = "localhost";
+        public static $db = "test";
+        public static $user = "root";
+        public static $pwd = "";
 
         function getPDO(){
-            return new PDO("mysql:host=localhost;dbname=tp5;","root","");
+            return new PDO("mysql:host=".self::$host.";dbname=".self::$db.";","".self::$user."","".self::$pwd."");
         }
 
         function authentification($login, $password){
@@ -53,7 +57,7 @@
         }
 
         static function getClient($id){
-            $pdo=new PDO("mysql:host=localhost;dbname=tp5;","root","");
+            $pdo=new PDO("mysql:host=".self::$host.";dbname=".self::$db.";","".self::$user."","".self::$pwd."");
             $stmt=$pdo->prepare("SELECT * FROM client where idClient=?;");
             $stmt->execute(array($id));
     
@@ -84,7 +88,7 @@
 
         static function deleteClient($id){
             // $pdo=$this->getPDO();
-            $pdo=new PDO("mysql:host=localhost;dbname=tp5;","root","");
+            $pdo=new PDO("mysql:host=".self::$host.";dbname=".self::$db.";","".self::$user."","".self::$pwd."");
             $stmt=$pdo->prepare("DELETE FROM client where idClient=?; ");
             $stmt->execute(array($id));
         }
@@ -113,7 +117,7 @@
         }
 
         static function getFournisseur($id){
-            $pdo=new PDO("mysql:host=localhost;dbname=tp5;","root","");
+            $pdo=new PDO("mysql:host=".self::$host.";dbname=".self::$db.";","".self::$user."","".self::$pwd."");
             $stmt=$pdo->prepare("SELECT * FROM fournisseur where idFournisseur=?;");
             $stmt->execute(array($id));
     
@@ -158,7 +162,7 @@
         }
 
         static function afficherProduitsByCat($cat){
-            $pdo=new PDO("mysql:host=localhost;dbname=tp5;","root","");
+            $pdo=new PDO("mysql:host=".self::$host.";dbname=".self::$db.";","".self::$user."","".self::$pwd."");
             $stmt=$pdo->prepare("SELECT * FROM produit natural join categorie where idCategorie='$cat'");
             $stmt->execute();
             $produits=[];
@@ -170,7 +174,7 @@
         }
 
         static function getProduit($ref){
-            $pdo=new PDO("mysql:host=localhost;dbname=tp5;","root","");
+            $pdo=new PDO("mysql:host=".self::$host.";dbname=".self::$db.";","".self::$user."","".self::$pwd."");
             $stmt=$pdo->prepare("SELECT * FROM produit where reference=?;");
             $stmt->execute(array($ref));
     
@@ -184,7 +188,7 @@
         function updateProduit($obj){
             $pdo=$this->getPDO();
             $stmt=$pdo->prepare("UPDATE produit SET libelle=?,prixUnitaire=?,quantiteStock=?,prixAchat=?,image=?,idCategorie=?,description=? where reference=?; ");
-            $stmt->execute(array($obj->get("l"),$obj->get("p"),$obj->get("q"),$obj->get("a"),$obj->get("i"),$obj->get("c"),$obj->get("r"),$obj->get("d")));
+            $stmt->execute(array($obj->get("l"),$obj->get("p"),$obj->get("q"),$obj->get("a"),$obj->get("i"),$obj->get("c"),$obj->get("d"),$obj->get("r")));
         }
 
         function deleteProduit($id){
@@ -240,7 +244,7 @@
         }
 
         static function getCommandeId($date,$idClient){
-            $pdo= new PDO("mysql:host=localhost;dbname=tp5;","root","");
+            $pdo= new PDO("mysql:host=".self::$host.";dbname=".self::$db.";","".self::$user."","".self::$pwd."");
             $stmt=$pdo->prepare("SELECT numeroCmd FROM commande where date=? AND idClient=?;");
             $stmt->execute(array($date,$idClient));
     
@@ -258,9 +262,9 @@
         }
 
         static function Stats(){
-            $pdo= new PDO("mysql:host=localhost;dbname=tp5;","root","");
+            $pdo= new PDO("mysql:host=".self::$host.";dbname=".self::$db.";","".self::$user."","".self::$pwd."");
             $stmt=$pdo->prepare("SELECT date_format(commande.date,'%m-%y') as monthnum,date_format(commande.date,'%M %Y') as month,sum(prixVente) as prix 
-                                FROM commande natural join lignecmd group by monthname(commande.date) order by `monthnum` ASC;");
+                                FROM commande natural join lignecmd group by monthname(commande.date) order by `monthnum` DESC;");
             $stmt->execute();
             return $stmt;
             
@@ -268,7 +272,7 @@
         }
 
         static function Income(){
-            $pdo= new PDO("mysql:host=localhost;dbname=tp5;","root","");
+            $pdo= new PDO("mysql:host=".self::$host.";dbname=".self::$db.";","".self::$user."","".self::$pwd."");
             $stmt=$pdo->prepare("SELECT sum(prixVente) as prix FROM commande natural join lignecmd ;");
             $stmt->execute();
     
@@ -280,7 +284,7 @@
         }
 
         static function Trending($nbr){
-            $pdo= new PDO("mysql:host=localhost;dbname=tp5;","root","");
+            $pdo= new PDO("mysql:host=".self::$host.";dbname=".self::$db.";","".self::$user."","".self::$pwd."");
             $stmt=$pdo->prepare("SELECT reference,count(reference) as num 
                                 FROM commande natural join lignecmd 
                                 where commande.date < now() and commande.date > DATE_SUB(now(), INTERVAL 7 DAY) 
@@ -342,7 +346,7 @@
         }
 
         static function getApprovisId($date,$idFournisseur){
-            $pdo= new PDO("mysql:host=localhost;dbname=tp5;","root","");
+            $pdo= new PDO("mysql:host=".self::$host.";dbname=".self::$db.";","".self::$user."","".self::$pwd."");
             $stmt=$pdo->prepare("SELECT numeroAppro FROM approvisionnement where date=? AND idFournisseur=?;");
             $stmt->execute(array($date,$idFournisseur));
 
@@ -388,7 +392,7 @@
     
             if($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 extract($row);
-                return new Client($idCategorie,$nomCategorie);
+                return new Categorie($idCategorie,$nomCategorie);
             }
             return null;
         }

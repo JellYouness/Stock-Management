@@ -1,8 +1,15 @@
 <?php 
-require("../DAO/DAO.php");
+require_once("../DAO/DAO.php");
+require_once("../Metier/client.php");
+require_once("../Metier/produit.php");
+require_once("../Metier/categorie.php");
+require_once("../Metier/fournisseur.php");
+require_once("../Metier/commande.php");
+require_once("../Metier/ligneCmd.php");
+require_once("../Metier/approvisionnement.php");
   session_start();
   if(!isset($_SESSION['login'])){
-    header("Location: http://localhost/Mini/");
+    header("Location: /Stock-Management/index.php");
   }
 ?>
 <!DOCTYPE html>
@@ -97,7 +104,7 @@ require("../DAO/DAO.php");
                     <li class="sidebar-title">Menu</li>
 
                     <li class="sidebar-item  ">
-                        <a href="http://localhost/Mini/Presentation/dashboard.php" class='sidebar-link'>
+                        <a href="/Stock-Management/Presentation/dashboard.php" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Dashboard</span>
                         </a>
@@ -110,10 +117,10 @@ require("../DAO/DAO.php");
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Client/ajouterClient.php">Ajout</a>
+                                <a href="/Stock-Management/Presentation/Client/ajouterClient.php">Ajout</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Client/afficherClients.php">Liste</a>
+                                <a href="/Stock-Management/Presentation/Client/afficherClients.php">Liste</a>
                             </li>
                         </ul>
                     </li>
@@ -125,11 +132,11 @@ require("../DAO/DAO.php");
                         <ul class="submenu ">
                             <li class="submenu-item ">
                                 <a
-                                    href="http://localhost/Mini/Presentation/Fournisseur/ajouterFournisseur.php">Ajout</a>
+                                    href="/Stock-Management/Presentation/Fournisseur/ajouterFournisseur.php">Ajout</a>
                             </li>
                             <li class="submenu-item ">
                                 <a
-                                    href="http://localhost/Mini/Presentation/Fournisseur/afficherFournisseurs.php">Liste</a>
+                                    href="/Stock-Management/Presentation/Fournisseur/afficherFournisseurs.php">Liste</a>
                             </li>
                         </ul>
                     </li>
@@ -140,10 +147,10 @@ require("../DAO/DAO.php");
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Produit/ajouterProduit.php">Ajout</a>
+                                <a href="/Stock-Management/Presentation/Produit/ajouterProduit.php">Ajout</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Produit/afficherProduits.php">Liste</a>
+                                <a href="/Stock-Management/Presentation/Produit/afficherProduits.php">Liste</a>
                             </li>
                         </ul>
                     </li>
@@ -154,10 +161,10 @@ require("../DAO/DAO.php");
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Categorie/ajouterCategorie.php">Ajout</a>
+                                <a href="/Stock-Management/Presentation/Categorie/ajouterCategorie.php">Ajout</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Categorie/afficherCategories.php">Liste</a>
+                                <a href="/Stock-Management/Presentation/Categorie/afficherCategories.php">Liste</a>
                             </li>
                         </ul>
                     </li>
@@ -168,10 +175,10 @@ require("../DAO/DAO.php");
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Caisse/caisse.php">Ajout</a>
+                                <a href="/Stock-Management/Presentation/Caisse/caisse.php">Ajout</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Commande/afficherCommandes.php">Liste</a>
+                                <a href="/Stock-Management/Presentation/Commande/afficherCommandes.php">Liste</a>
                             </li>
                         </ul>
                     </li>
@@ -182,10 +189,10 @@ require("../DAO/DAO.php");
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Approvisionnement/caisse.php">Ajout</a>
+                                <a href="/Stock-Management/Presentation/Approvisionnement/caisse.php">Ajout</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="http://localhost/Mini/Presentation/Approvisionnement/afficherApprovisionnements.php">Liste</a>
+                                <a href="/Stock-Management/Presentation/Approvisionnement/afficherApprovisionnements.php">Liste</a>
                             </li>
                         </ul>
                     </li>
@@ -214,7 +221,7 @@ require("../DAO/DAO.php");
             <br>
             <section class="section" style="margin-top: -20px;">
                 <div class="row">
-                    <div class="col-6 col-lg-3 col-md-6">
+                    <div class="col-6 col-lg-4 col-md-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
@@ -228,15 +235,14 @@ require("../DAO/DAO.php");
                                             Commandes
                                         </h6>
                                         <h6 class="font-extrabold mb-0">
-                                            <?php require "../Metier/commande.php";
-                                            echo Commande::total();?>
+                                            <?php echo Commande::total();?>
                                         </h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 col-lg-3 col-md-6">
+                    <div class="col-6 col-lg-4 col-md-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
@@ -248,15 +254,14 @@ require("../DAO/DAO.php");
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                         <h6 class="text-muted font-semibold">Clients</h6>
                                         <h6 class="font-extrabold mb-0">
-                                            <?php require "../Metier/client.php";
-                                            echo Client::total();?>
+                                            <?php echo Client::total();?>
                                         </h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 col-lg-3 col-md-6">
+                    <div class="col-6 col-lg-4 col-md-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
@@ -268,23 +273,6 @@ require("../DAO/DAO.php");
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                         <h6 class="text-muted font-semibold">Revenu total</h6>
                                         <h6 class="font-extrabold mb-0"><?=DAO::Income()?> Dhs</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body px-4 py-4-5">
-                                <div class="row">
-                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
-                                        <div class="stats-icon red mb-2">
-                                            <i class="iconly-boldBookmark"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Saved Post</h6>
-                                        <h6 class="font-extrabold mb-0">112</h6>
                                     </div>
                                 </div>
                             </div>
@@ -312,7 +300,7 @@ require("../DAO/DAO.php");
                                 <h4>Produit en Tendance</h4>
                             </div>
                             <div class="card-content pb-4">
-                                <?php include_once "../Metier/produit.php";$tp = DAO::Trending(3);
+                                <?php $tp = DAO::Trending(3);
                                     $i=1;
                                         foreach($tp as $t){?>
                                 <div class="card d-flex flex-row align-items-center" style="width: 80%; background-color: var(--bs-body-bg);margin:1rem 1.5rem;border: 1px var(--bs-body-bg) solid;">
